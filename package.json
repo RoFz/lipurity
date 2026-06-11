@@ -1,0 +1,13 @@
+{
+  "name": "lipurity",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Dev tooling for the LI Purity userscript (lint only; the script itself has no dependencies and no build step).",
+  "scripts": {
+    "lint": "eslint . && node --check lipurity.user.js"
+  },
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-plugin-userscripts": "^0.5.0"
+  }
+}

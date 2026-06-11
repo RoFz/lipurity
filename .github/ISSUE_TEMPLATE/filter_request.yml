@@ -1,0 +1,51 @@
+name: Filter or Translation Request
+description: Request a new filter for an injected module type, or contribute label strings for your language.
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Detection is exact-text based: the script matches the precise strings
+        the site renders. For both new filters and translations, the exact
+        on-screen text is what makes the request actionable.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      options:
+        - New filter (a module type not covered yet)
+        - Label translation (existing filter, different language)
+    validations:
+      required: true
+
+  - type: input
+    id: ui-language
+    attributes:
+      label: Site UI language
+      placeholder: 'e.g. English, Portugues, Deutsch'
+    validations:
+      required: true
+
+  - type: textarea
+    id: labels
+    attributes:
+      label: Exact on-screen text
+      description: >-
+        Paste the exact header/label text character-for-character, including
+        punctuation and apostrophes. For translations, list each filter name
+        and its rendered text in your language.
+      placeholder: |
+        e.g.
+        Promoted -> "Promovido"
+        Suggested -> "Sugerido"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Screenshot or context
+      description: A cropped screenshot of the module helps confirm the structure. Please remove personal information.
+    validations:
+      required: false
