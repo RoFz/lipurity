@@ -1,0 +1,39 @@
+name: Dependency Review
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions: read-all
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # npm dependencies (package-lock.json) are picked up natively by the
+  # dependency graph; no snapshot submission step is needed.
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    # Skip for release-please PRs — they only modify the changelog, manifest,
+    # and version strings, never dependency manifests.
+    if: "!startsWith(github.head_ref, 'release-please--branches--')"
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      # NOTE: Action refs are pinned to full commit SHAs for supply-chain security.
+      - name: Checkout code
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Dependency review
+        uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: always
+          retry-on-snapshot-warnings: true

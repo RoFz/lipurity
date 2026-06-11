@@ -1,0 +1,70 @@
+name: Bug Report
+description: A filter leaking through, a hidden module reappearing, or breakage after a site update.
+labels: ['bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill in as much
+        detail as possible.
+
+        > **Security issue?** Do not open a public issue — use the
+        > [Security Advisory](https://github.com/RoFz/lipurity/security/advisories/new)
+        > instead.
+
+  - type: input
+    id: script-version
+    attributes:
+      label: Script version
+      description: The version shown in your userscript manager.
+      placeholder: 'e.g. 0.1.0'
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: 'e.g. Safari 18.2, Chrome 137'
+    validations:
+      required: true
+
+  - type: dropdown
+    id: manager
+    attributes:
+      label: Userscript manager
+      options:
+        - Tampermonkey
+        - Userscripts (Safari)
+        - Greasemonkey
+        - Violentmonkey
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: input
+    id: ui-language
+    attributes:
+      label: Site UI language
+      description: Detection is label-based, so the display language matters.
+      placeholder: 'e.g. English, Portugues'
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: >-
+        What leaked through or broke? If a module was not hidden, paste the
+        exact header text it shows (character-for-character). Screenshots
+        help a lot; please crop out personal information.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: false
