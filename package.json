@@ -7,7 +7,7 @@
     "lint": "eslint . && node --check lipurity.user.js"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
+    "eslint": "^10.8.0",
     "eslint-plugin-userscripts": "^0.5.0"
   }
 }
